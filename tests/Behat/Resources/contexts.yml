@@ -1,0 +1,22 @@
+services:
+    bitbag.mercanet_bnp_paribas_plugin.context.setup.mercanet_bnp_paribas:
+        class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Setup\MercanetBnpParibasContext
+        arguments:
+            - '@sylius.behat.shared_storage'
+            - '@__symfony__.sylius.repository.payment_method'
+            - '@__symfony__.sylius.fixture.example_factory.payment_method'
+            - '@__symfony__.sylius.factory.payment_method_translation'
+            - '@__symfony__.sylius.manager.payment_method'
+
+        tags:
+            - { name: fob.context_service }
+
+    bitbag.mercanet_bnp_paribas_plugin.context.ui.mercanet_bnp_paribas:
+        class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Ui\MercanetBnpParibasContext
+        arguments:
+            - '@bitbag.mercanet_bnp_paribas_plugin.mocker.mercanet_bnp_paribas'
+            - '@sylius.behat.page.shop.checkout.complete'
+            - '@bitbag.mercanet_bnp_paribas_plugin.page.external'
+            - '@sylius.behat.page.shop.order.show'
+        tags:
+            - { name: fob.context_service }

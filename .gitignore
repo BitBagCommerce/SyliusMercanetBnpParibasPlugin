@@ -1,0 +1,12 @@
+/vendor
+
+!tests/Application/web/app_test.php
+tests/Application/web/*
+!tests/Application/web/.gitkeep
+
+/etc/build/*
+!/etc/build/.gitkeep
+
+tests/Application/var/*
+
+tests/Application/node_modules
