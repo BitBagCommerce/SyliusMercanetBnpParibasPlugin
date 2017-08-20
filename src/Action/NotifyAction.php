@@ -9,6 +9,7 @@
  */
 
 namespace BitBag\MercanetBnpParibasPlugin\Action;
+
 use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
