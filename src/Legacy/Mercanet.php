@@ -9,7 +9,7 @@ namespace BitBag\MercanetBnpParibasPlugin\Legacy;
 /**
  * @author Mikołaj Król <mikolaj.krol@bitbag.pl>
  */
-final class Mercanet
+class Mercanet
 {
     const TEST = "https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit";
     const PRODUCTION = "https://payment-webinit.mercanet.bnpparibas.net/rs-services/v2/paymentInit";
@@ -191,6 +191,16 @@ final class Mercanet
         }
         $this->parameters['amount'] = $amount;
 
+    }
+
+    public function setMerchantId($merchantId)
+    {
+        $this->parameters['merchantId'] = $merchantId;
+    }
+
+    public function setKeyVersion($keyVersion)
+    {
+        $this->parameters['keyVersion'] = $keyVersion;
     }
 
     public function setCurrency($currency)

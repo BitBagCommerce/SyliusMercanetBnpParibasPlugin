@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: Acme\ExamplePlugin
-        psr4_prefix: Acme\ExamplePlugin
+        namespace: BitBag\MercanetBnpParibasPlugin
+        psr4_prefix: BitBag\MercanetBnpParibasPlugin
