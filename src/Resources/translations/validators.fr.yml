@@ -1,0 +1,8 @@
+bitbag:
+    mercanet_bnp_paribas:
+        merchant_id:
+            not_blank: Entrez l'identifiant du marchand.
+        secure_key:
+            not_blank: Veuillez entrer le code de sécurité.
+        channel:
+            currency: Monnaie non valide. La devise autorisée est EUR.

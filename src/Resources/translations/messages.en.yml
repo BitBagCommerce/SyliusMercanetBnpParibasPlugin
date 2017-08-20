@@ -1,0 +1,8 @@
+bitbag:
+    mercanet_bnp_paribas:
+        environment: Environment
+        secure_key: Secure key
+        merchant_id: Merchant ID
+        gateway_label: Mercanet BNP Paribas
+        production: Production
+        test: Test
