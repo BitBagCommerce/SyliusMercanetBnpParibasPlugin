@@ -34,5 +34,5 @@ interface MercanetBnpParibasBridgeInterface
     /**
      * @return bool
      */
-    public function isMethodPost();
+    public function isPostMethod();
 }

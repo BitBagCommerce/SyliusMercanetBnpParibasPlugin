@@ -11,7 +11,7 @@
 namespace BitBag\MercanetBnpParibasPlugin\Action;
 
 use BitBag\MercanetBnpParibasPlugin\Legacy\SimplePayment;
-use BitBag\MercanetBnpParibasPlugin\OpenMercanetBnpParibasWrapperInterface;
+use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
@@ -40,20 +40,20 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
     private $payum;
 
     /**
-     * @var OpenMercanetBnpParibasWrapperInterface
+     * @var MercanetBnpParibasBridgeInterface
      */
-    private $openMercanetBnpParibasWrapper;
+    private $mercanetBnpParibasBridge;
 
     /**
      * @param Payum $payum
-     * @param OpenMercanetBnpParibasWrapperInterface $openMercanetBnpParibasWrapper
+     * @param MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
      */
     public function __construct(
         Payum $payum,
-        OpenMercanetBnpParibasWrapperInterface $openMercanetBnpParibasWrapper
+        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
     )
     {
-        $this->openMercanetBnpParibasWrapper = $openMercanetBnpParibasWrapper;
+        $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
         $this->payum = $payum;
     }
 
@@ -91,9 +91,9 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         if ($transactionReference !== null) {
 
-            if ($this->openMercanetBnpParibasWrapper->isMethodPost()) {
+            if ($this->mercanetBnpParibasBridge->isPostMethod()) {
 
-                $model['status'] = $this->openMercanetBnpParibasWrapper->paymentVerification($this->api['secret_key']) ?
+                $model['status'] = $this->mercanetBnpParibasBridge->paymentVerification($this->api['secret_key']) ?
                     PaymentInterface::STATE_COMPLETED : PaymentInterface::STATE_CANCELLED;
 
                 $request->setModel($model);
@@ -111,7 +111,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         $secretKey = $this->api['secret_key'];
 
-        $mercanet = $this->openMercanetBnpParibasWrapper->createMercanet($secretKey);
+        $mercanet = $this->mercanetBnpParibasBridge->createMercanet($secretKey);
 
         $environment = $this->api['environment'];
         $merchantId = $this->api['merchant_id'];
@@ -120,7 +120,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $currencyCode = $payment->getCurrencyCode();
         $targetUrl = $request->getToken()->getTargetUrl();
         $amount = $payment->getAmount();
-        $transactionReference = "MercanetWS" . uniqid($payment->getOrder()->getNumber()); //TODO
+        $transactionReference = "MercanetWS" . uniqid($payment->getOrder()->getNumber());
 
         $model['transactionReference'] = $transactionReference;
 

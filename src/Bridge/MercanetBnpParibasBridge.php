@@ -8,10 +8,8 @@
  * an email on kontakt@bitbag.pl.
  */
 
-namespace BitBag\MercanetBnpParibasPlugin;
+namespace BitBag\MercanetBnpParibasPlugin\Bridge;
 
-use BitBag\MercanetBnpParibasPlugin\Action\CaptureAction;
-use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -46,7 +44,7 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
      */
     public function paymentVerification($secretKey)
     {
-        if ($this->isMethodPost()) {
+        if ($this->isPostMethod()) {
 
             $paymentResponse = new Mercanet($secretKey);
             $paymentResponse->setResponse($_POST);
@@ -60,7 +58,7 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
     /**
      * {@inheritDoc}
      */
-    public function isMethodPost()
+    public function isPostMethod()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
 

@@ -10,8 +10,6 @@
 
 namespace BitBag\MercanetBnpParibasPlugin\Action;
 
-use BitBag\PayUPlugin\OpenPayUWrapper;
-use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Action\ActionInterface;
@@ -54,7 +52,7 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
     /**
      * @return string|null
      */
-    private function getClientIp()
+    public function getClientIp()
     {
         return array_key_exists('REMOTE_ADDR', $_SERVER) ? $_SERVER['REMOTE_ADDR'] : null;
     }

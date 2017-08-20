@@ -92,7 +92,7 @@ final class SimplePayment
         $this->mercanet->setInterfaceVersion(Mercanet::INTERFACE_VERSION);
         $this->mercanet->setKeyVersion('1');
         $this->mercanet->setAmount($this->amount);
-        $this->mercanet->setCurrency($this->currency); // TODO
+        $this->mercanet->setCurrency($this->currency);
         $this->mercanet->setOrderChannel("INTERNET");
         $this->mercanet->setTransactionReference($this->transactionReference);
         $this->mercanet->setNormalReturnUrl($this->targetUrl);
