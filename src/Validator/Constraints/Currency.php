@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @author Patryk Drapik <patryk.drapik@bitbag.pl>
  */
-class Currency extends Constraint
+final class Currency extends Constraint
 {
     /**
      * @var string

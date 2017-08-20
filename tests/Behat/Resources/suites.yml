@@ -41,6 +41,37 @@ default:
 
                 - bitbag.mercanet_bnp_paribas_plugin.context.setup.mercanet_bnp_paribas
 
-                - bitbag.mercanet_bnp_paribas_plugin.context.ui.mercanet_bnp_paribas
+                - bitbag.mercanet_bnp_paribas_plugin.context.ui.shop.mercanet_bnp_paribas
             filters:
                 tags: "@paying_with_mercanet_bnp_paribas_for_order && @ui"
+        ui_managing_payment_methods:
+            contexts_services:
+                - sylius.behat.context.hook.doctrine_orm
+
+                - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.currency
+                - sylius.behat.context.setup.locale
+                - sylius.behat.context.setup.order
+                - sylius.behat.context.setup.payment
+                - sylius.behat.context.setup.product
+                - sylius.behat.context.setup.admin_security
+                - sylius.behat.context.setup.shipping
+                - sylius.behat.context.setup.user
+                - sylius.behat.context.setup.zone
+
+                - sylius.behat.context.transform.address
+                - sylius.behat.context.transform.customer
+                - sylius.behat.context.transform.locale
+                - sylius.behat.context.transform.payment
+                - sylius.behat.context.transform.product
+                - sylius.behat.context.transform.shared_storage
+                - sylius.behat.context.transform.shipping_method
+
+                - sylius.behat.context.ui.admin.managing_payment_methods
+                - sylius.behat.context.ui.admin.notification
+                - sylius.behat.context.ui.shop.locale
+
+                - bitbag.mercanet_bnp_paribas_plugin.context.setup.channel
+                - bitbag.mercanet_bnp_paribas_plugin.context.ui.admin.managing_payment_methods
+            filters:
+                tags: "@managing_payment_method_mercanet_bnp_paribas && @ui"

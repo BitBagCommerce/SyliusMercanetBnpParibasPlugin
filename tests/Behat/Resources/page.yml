@@ -5,3 +5,10 @@ services:
         public: 'false'
         arguments:
             - '@__symfony__.sylius.repository.payment_security_token'
+
+    bitbag.mercanet_bnp_paribas_plugin.page.admin.payment_method.create:
+        class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Page\Admin\PaymentMethod\CreatePage
+        parent: 'sylius.behat.page.admin.crud.create'
+        public: 'false'
+        arguments:
+            - 'sylius_admin_payment_method_create'

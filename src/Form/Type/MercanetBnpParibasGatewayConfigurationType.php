@@ -40,6 +40,7 @@ final class MercanetBnpParibasGatewayConfigurationType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'bitbag.mercanet_bnp_paribas.secure_key.not_blank',
+                        'groups' => ['sylius']
                     ])
                 ],
             ])
@@ -48,6 +49,7 @@ final class MercanetBnpParibasGatewayConfigurationType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'bitbag.mercanet_bnp_paribas.merchant_id.not_blank',
+                        'groups' => ['sylius']
                     ])
                 ],
             ])

@@ -43,6 +43,7 @@ final class PaymentMethodExtension extends AbstractTypeExtension
                 'constraints' => [
                     new Currency([
                         'groups' => 'sylius',
+                        'message' => 'bitbag.mercanet_bnp_paribas.channel.currency',
                         'factoryName' => $gatewayFactory->getFactoryName()
                     ]),
                 ],

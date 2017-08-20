@@ -43,9 +43,7 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
     }
 
     /**
-     * @param  $request
-     *
-     * @throws \Payum\Core\Exception\RequestNotSupportedException if the action dose not support the request.
+     * {@inheritDoc}
      */
     public function execute($request)
     {

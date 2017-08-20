@@ -19,7 +19,7 @@ use Webmozart\Assert\Assert;
 /**
  * @author Patryk Drapik <patryk.drapik@bitbag.pl>
  */
-class CurrencyValidator extends ConstraintValidator
+final class CurrencyValidator extends ConstraintValidator
 {
     const FACTORY_NAME_MERCANET_BNP_PARIBAS = 'mercanet_bnp_paribas';
 
