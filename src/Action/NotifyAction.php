@@ -9,9 +9,7 @@
  */
 
 namespace BitBag\MercanetBnpParibasPlugin\Action;
-
-use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
-use BitBag\MercanetBnpParibasPlugin\OpenMercanetBnpParibasWrapperInterface;
+use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -19,7 +17,6 @@ use Payum\Core\Exception\UnsupportedApiException;
 use Payum\Core\GatewayAwareTrait;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Payum\Core\Request\Notify;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Webmozart\Assert\Assert;
 
 /**
@@ -32,16 +29,16 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
     private $api = [];
 
     /**
-     * @var OpenMercanetBnpParibasWrapperInterface
+     * @var MercanetBnpParibasBridgeInterface
      */
-    private $openMercanetBnpParibasWrapper;
+    private $mercanetBnpParibasBridge;
 
     /**.
-     * @param OpenMercanetBnpParibasWrapperInterface $openMercanetBnpParibasWrapper
+     * @param MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
      */
-    public function __construct(OpenMercanetBnpParibasWrapperInterface $openMercanetBnpParibasWrapper)
+    public function __construct(MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge)
     {
-        $this->openMercanetBnpParibasWrapper = $openMercanetBnpParibasWrapper;
+        $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
     }
 
     /**
@@ -54,7 +51,7 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
         /** @var $request Notify */
         RequestNotSupportedException::assertSupports($this, $request);
 
-        if ($this->openMercanetBnpParibasWrapper->paymentVerification($this->api['secret_key'])) {
+        if ($this->mercanetBnpParibasBridge->paymentVerification($this->api['secret_key'])) {
 
             /** @var PaymentInterface $payment */
             $payment = $request->getFirstModel();

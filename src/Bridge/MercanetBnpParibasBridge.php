@@ -11,13 +11,14 @@
 namespace BitBag\MercanetBnpParibasPlugin;
 
 use BitBag\MercanetBnpParibasPlugin\Action\CaptureAction;
+use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @author Patryk Drapik <patryk.drapik@bitbag.pl>
  */
-final class OpenMercanetBnpParibasWrapper implements OpenMercanetBnpParibasWrapperInterface
+final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterface
 {
     /**
      * @var RequestStack

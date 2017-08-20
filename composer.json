@@ -1,7 +1,7 @@
 {
     "name": "bitbag/mercanet-bnp-paribas-plugin",
     "type": "sylius-plugin",
-    "description": "Mercanet Bnp Paribas payment plugin for Sylius applications.",
+    "description": "Mercanet BNP Paribas payment plugin for Sylius applications.",
     "license": "MIT",
     "authors": [
         {

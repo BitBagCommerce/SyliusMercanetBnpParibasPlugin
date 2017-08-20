@@ -8,14 +8,14 @@
  * an email on kontakt@bitbag.pl.
  */
 
-namespace BitBag\MercanetBnpParibasPlugin;
+namespace BitBag\MercanetBnpParibasPlugin\Bridge;
 
 use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
 
 /**
  * @author Patryk Drapik <patryk.drapik@bitbag.pl>
  */
-interface OpenMercanetBnpParibasWrapperInterface
+interface MercanetBnpParibasBridgeInterface
 {
     /**
      * @param string $secretKey

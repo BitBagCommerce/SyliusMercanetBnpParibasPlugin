@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is a part of OpenSource Mercanet payment library adjusted for purpose of this project.
+ * This file is a part of OpenSource Mercanet payment library adjusted for purposes of this project.
  */
 
 namespace BitBag\MercanetBnpParibasPlugin\Legacy;

@@ -21,6 +21,7 @@ use Payum\Core\Request\Convert;
 
 /**
  * @author Mikołaj Król <mikolaj.krol@bitbag.pl>
+ * @author Patryk Drapik <patryk.drapik@bitbag.pl>
  */
 final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface
 {
