@@ -11,7 +11,7 @@
 namespace Tests\BitBag\MercanetBnpParibasPlugin\Behat\Mocker;
 
 use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
-use BitBag\MercanetBnpParibasPlugin\OpenMercanetBnpParibasWrapperInterface;
+use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use Sylius\Behat\Service\Mocker\Mocker;
 
 /**
@@ -38,7 +38,7 @@ final class MercanetBnpParibasMocker
     public function completedPayment(callable $action)
     {
         $openMercanetBnpParibasWrapper = $this->mocker
-            ->mockService('bitbag.mercanet_bnp_paribas.open_mercanet_bnp_paribas_wrapper', OpenMercanetBnpParibasWrapperInterface::class);
+            ->mockService('bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge', MercanetBnpParibasBridgeInterface::class);
 
         $openMercanetBnpParibasWrapper
             ->shouldReceive('createMercanet')
@@ -49,7 +49,7 @@ final class MercanetBnpParibasMocker
             ->andReturn(true);
 
         $openMercanetBnpParibasWrapper
-            ->shouldReceive('isMethodPost')
+            ->shouldReceive('isPostMethod')
             ->andReturn(true);
 
         $action();
@@ -63,7 +63,7 @@ final class MercanetBnpParibasMocker
     public function canceledPayment(callable $action)
     {
         $openMercanetBnpParibasWrapper = $this->mocker
-            ->mockService('bitbag.mercanet_bnp_paribas.open_mercanet_bnp_paribas_wrapper', OpenMercanetBnpParibasWrapperInterface::class);
+            ->mockService('bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge', MercanetBnpParibasBridgeInterface::class);
 
         $openMercanetBnpParibasWrapper
             ->shouldReceive('createMercanet')
@@ -74,7 +74,7 @@ final class MercanetBnpParibasMocker
             ->andReturn(false);
 
         $openMercanetBnpParibasWrapper
-            ->shouldReceive('isMethodPost')
+            ->shouldReceive('isPostMethod')
             ->andReturn(true);
 
         $action();
