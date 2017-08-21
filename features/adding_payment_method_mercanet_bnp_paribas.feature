@@ -29,6 +29,6 @@ Feature: Adding a new payment method
         And make it available in channel "United States"
         And I add it
         Then I should be notified that the secure key is invalid
-        Then I should be notified that the merchant ID is invalid
-        Then I should be notified that the channel is invalid
+        And I should be notified that the merchant ID is invalid
+        And I should be notified that the channel is invalid
 
