@@ -24,7 +24,11 @@ final class NotifyActionSpec extends ObjectBehavior
     function let(MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge)
     {
         $this->beConstructedWith($mercanetBnpParibasBridge);
-        $this->setApi(['environment' => 'https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit', 'secret_key' => '123', 'merchant_id' => '123']);
+        $this->setApi([
+            'environment' => 'https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit',
+            'secret_key' => '123',
+            'merchant_id' => '123'
+        ]);
     }
 
     function it_is_initializable()
@@ -40,10 +44,8 @@ final class NotifyActionSpec extends ObjectBehavior
     )
     {
         $payment->setState(PaymentInterface::STATE_COMPLETED)->shouldBeCalled();
-
         $request->getModel()->willReturn($arrayObject);
         $request->getFirstModel()->willReturn($payment);
-
         $mercanetBnpParibasBridge->isPostMethod()->willReturn(true);
         $mercanetBnpParibasBridge->paymentVerification(123)->willReturn(true);
 

@@ -18,7 +18,7 @@ use Payum\Core\Model\PaymentInterface;
 /**
  * @author Patryk Drapik <patryk.drapik@bitbag.pl>
  */
-class ConvertPaymentActionSpec extends ObjectBehavior
+final class ConvertPaymentActionSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {

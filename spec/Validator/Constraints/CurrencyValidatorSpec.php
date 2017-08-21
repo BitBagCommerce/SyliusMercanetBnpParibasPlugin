@@ -40,13 +40,9 @@ final class CurrencyValidatorSpec extends ObjectBehavior
     {
         $constraint = new Currency();
         $constraint->factoryName = CurrencyValidator::FACTORY_NAME_MERCANET_BNP_PARIBAS;
-
         $currencyModel->getCode()->willReturn('USD');
-
         $channel->getBaseCurrency()->willReturn($currencyModel);
-
         $arrayCollection->toArray()->willReturn([$channel]);
-
         $constraintViolationBuilder->addViolation()->shouldBeCalled();
         $executionContext->buildViolation($constraint->message)->willReturn($constraintViolationBuilder);
         $constraintViolationBuilder->setParameter(Argument::any(), Argument::any())->willReturn($constraintViolationBuilder);

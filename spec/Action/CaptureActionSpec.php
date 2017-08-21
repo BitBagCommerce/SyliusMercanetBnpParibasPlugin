@@ -17,7 +17,7 @@ use Payum\Core\Model\Token;
 use Payum\Core\Payum;
 use Payum\Core\Reply\HttpResponse;
 use Payum\Core\Request\Capture;
-use Payum\Core\Security\GenericTokenFactoryInterface;
+use Payum\Core\Security\GenericTokenFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\PaymentInterface;
@@ -31,7 +31,11 @@ final class CaptureActionSpec extends ObjectBehavior
     function let(Payum $payum, MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge)
     {
         $this->beConstructedWith($payum, $mercanetBnpParibasBridge);
-        $this->setApi(['environment' => 'https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit', 'secret_key' => '123', 'merchant_id' => '123']);
+        $this->setApi([
+            'environment' => 'https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit',
+            'secret_key' => '123',
+            'merchant_id' => '123'
+        ]);
     }
 
     function it_is_initializable()
@@ -46,28 +50,22 @@ final class CaptureActionSpec extends ObjectBehavior
         Token $token,
         Token $notifyToken,
         Payum $payum,
-        GenericTokenFactoryInterface $genericTokenFactory,
+        GenericTokenFactory $genericTokenFactory,
         Order $order,
         MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
         Mercanet $mercanet
     )
     {
         $mercanetBnpParibasBridge->createMercanet('123')->willReturn($mercanet);
-
         $payment->getOrder()->willReturn($order);
         $payment->getCurrencyCode()->willReturn('EUR');
         $payment->getAmount()->willReturn(100);
-
         $notifyToken->getTargetUrl()->willReturn('url');
         $token->getTargetUrl()->willReturn('url');
-
         $token->getGatewayName()->willReturn('test');
         $token->getDetails()->willReturn([]);
-
         $genericTokenFactory->createNotifyToken('test', [])->willReturn($notifyToken);
-
         $payum->getTokenFactory()->willReturn($genericTokenFactory);
-
         $request->getModel()->willReturn($arrayObject);
         $request->getFirstModel()->willReturn($payment);
         $request->getToken()->willReturn($token);
