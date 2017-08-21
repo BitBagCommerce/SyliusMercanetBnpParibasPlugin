@@ -39,7 +39,6 @@ final class MercanetBnpParibasBridgeSpec extends ObjectBehavior
     )
     {
         $request->isMethod('POST')->willReturn(true);
-
         $requestStack->getCurrentRequest()->willReturn($request);
 
         $this->isPostMethod()->shouldReturn(true);
@@ -51,13 +50,12 @@ final class MercanetBnpParibasBridgeSpec extends ObjectBehavior
     )
     {
         $request->isMethod('POST')->willReturn(false);
-
         $requestStack->getCurrentRequest()->willReturn($request);
 
         $this->isPostMethod()->shouldReturn(false);
     }
 
-    function it_create_mercanet()
+    function it_creates_mercanet()
     {
         $this->createMercanet('key')->shouldBeAnInstanceOf(Mercanet::class);
     }
@@ -68,7 +66,6 @@ final class MercanetBnpParibasBridgeSpec extends ObjectBehavior
     )
     {
         $request->isMethod('POST')->willReturn(true);
-
         $requestStack->getCurrentRequest()->willReturn($request);
 
         $this
