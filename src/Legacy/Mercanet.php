@@ -2,12 +2,13 @@
 
 /**
  * This file is a part of OpenSource Mercanet payment library adjusted for purposes of this project.
+ * We are not the authors of the core logic of this class.
  */
 
 namespace BitBag\MercanetBnpParibasPlugin\Legacy;
 
 /**
- * @author Mikołaj Król <mikolaj.krol@bitbag.pl>
+ * @author Mikołaj Król <mikolaj.krol@bitbag.pl> READ THE FILE HEADER.
  */
 class Mercanet
 {
