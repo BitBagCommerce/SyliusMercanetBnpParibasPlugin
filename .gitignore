@@ -1,6 +1,5 @@
 /vendor
 
-!tests/Application/web/app_test.php
 tests/Application/web/*
 !tests/Application/web/.gitkeep
 

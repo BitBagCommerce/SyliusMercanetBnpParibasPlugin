@@ -20,7 +20,7 @@ final class Currency extends Constraint
     /**
      * @var string
      */
-    public $message = "Invalid currency. Allowed currency is EUR.";
+    public $message = "The only allowed currency is EUR.";
 
     /**
      * @var null|string

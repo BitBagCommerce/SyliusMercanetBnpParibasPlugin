@@ -71,7 +71,7 @@ final class ManagingPaymentMethodsContext implements Context
      */
     public function iShouldBeNotifiedThatTheChannelIsInvalid()
     {
-        Assert::true($this->createPage->findValidationMessage('Invalid currency. Allowed currency is EUR.'));
+        Assert::true($this->createPage->findValidationMessage('The only allowed currency is EUR.'));
     }
 
 }

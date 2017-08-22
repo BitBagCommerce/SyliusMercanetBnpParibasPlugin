@@ -10,8 +10,6 @@ imports:
 
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
 
-    - { resource: '@MercanetBnpParibasPlugin/Resources/config/services.yml' }
-
 framework:
     translator: { fallbacks: ["%locale%", "en"] }
     secret: "%secret"

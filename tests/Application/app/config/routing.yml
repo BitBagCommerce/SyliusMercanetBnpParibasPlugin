@@ -1,3 +1,2 @@
 sylius:
     resource: "../../../../vendor/sylius/sylius/app/config/routing.yml"
-
