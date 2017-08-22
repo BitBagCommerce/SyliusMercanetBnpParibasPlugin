@@ -5,4 +5,4 @@ bitbag:
         secure_key:
             not_blank: Please enter the Security Code.
         channel:
-            currency: Invalid currency. Allowed currency is EUR.
+            currency: The only allowed currency is EUR.

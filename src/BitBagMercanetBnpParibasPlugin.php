@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * @author Mikołaj Król <mikolaj.krol@bitbag.pl>
  */
-final class MercanetBnpParibasPlugin extends Bundle
+final class BitBagMercanetBnpParibasPlugin extends Bundle
 {
     use SyliusPluginTrait;
 }

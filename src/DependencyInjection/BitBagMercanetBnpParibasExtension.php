@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * @author Mikołaj Król <mikolaj.krol@bitbag.pl>
  */
-final class MercanetBnpParibasExtension extends Extension
+final class BitBagMercanetBnpParibasExtension extends Extension
 {
     /**
      * {@inheritdoc}
