@@ -1,5 +1,7 @@
 ![BitBag](https://bitbag.pl/static/bitbag-logo.png)
-## Overview
+
+
+#BitBagMercanetBnpParibasPlugin [![Build Status](https://travis-ci.org/bitbag-commerce/ShippingExportPlugin.svg?branch=master)](https://travis-ci.org/bitbag-commerce/ShippingExportPlugin)
 
 This plugin enables using Mercanet BNP Paribas payments in Sylius based stores.  
 
