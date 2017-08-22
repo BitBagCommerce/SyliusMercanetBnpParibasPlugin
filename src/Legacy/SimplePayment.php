@@ -11,7 +11,6 @@
 namespace BitBag\MercanetBnpParibasPlugin\Legacy;
 
 use Payum\Core\Reply\HttpResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author Mikołaj Król <mikolaj.krol@bitbag.pl>
@@ -62,6 +61,7 @@ final class SimplePayment
      * @param $targetUrl
      * @param $currency
      * @param $transactionReference
+     * @param $automaticResponseUrl
      */
     public function __construct(
         Mercanet $mercanet,
@@ -101,7 +101,7 @@ final class SimplePayment
 
         $response = $this->mercanet->executeRequest();
 
-        throw new HttpResponse(new Response($response));
+        throw new HttpResponse($response);
     }
 
     /**
