@@ -97,6 +97,7 @@ final class SimplePayment
         $this->mercanet->setTransactionReference($this->transactionReference);
         $this->mercanet->setNormalReturnUrl($this->targetUrl);
         $this->mercanet->setAutomaticResponseUrl($this->automaticResponseUrl);
+
         $this->mercanet->validate();
 
         $response = $this->mercanet->executeRequest();
