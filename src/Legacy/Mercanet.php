@@ -713,9 +713,9 @@ class Mercanet
             die();
         }
         $result_array = json_decode($result);
-        //print_r($result_array);
+        print_r($result_array);
 
-        if ($result_array->redirectionStatusCode == "00") {
+        if ($result_array->redirectionStatusCode == "00" ) {
 
             return "<html><body><form name=\"redirectForm\" method=\"POST\" action=\"" . $result_array->redirectionUrl . "\">" .
                 "<input type=\"hidden\" name=\"redirectionVersion\" value=\"" . $result_array->redirectionVersion . "\">" .

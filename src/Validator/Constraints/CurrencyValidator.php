@@ -22,7 +22,6 @@ use Webmozart\Assert\Assert;
 final class CurrencyValidator extends ConstraintValidator
 {
     const FACTORY_NAME_MERCANET_BNP_PARIBAS = 'mercanet_bnp_paribas';
-
     const CURRENCY_CODE_EUR = 'EUR';
 
     /**
@@ -44,13 +43,31 @@ final class CurrencyValidator extends ConstraintValidator
 
             Assert::isInstanceOf($channel, ChannelInterface::class);
 
-            if ($channel->getBaseCurrency()->getCode() !== self::CURRENCY_CODE_EUR) {
+            if ($channel->getBaseCurrency()->getCode() !== self::CURRENCY_CODE_EUR
+                && !in_array(self::CURRENCY_CODE_EUR, $this->getChannelCurrenciesCodes($channel
+                ))
+            ) {
 
                 $this->context
                     ->buildViolation($constraint->message)
-                    ->addViolation()
-                ;
+                    ->addViolation();
             }
         }
+    }
+
+    /**
+     * @param ChannelInterface $channel
+     *
+     * @return array
+     */
+    private function getChannelCurrenciesCodes(ChannelInterface $channel)
+    {
+        $currenciesCodes = [];
+
+        foreach ($channel->getCurrencies() as $currency) {
+            $currenciesCodes[] = $currency->getCode();
+        }
+
+        return $currenciesCodes;
     }
 }

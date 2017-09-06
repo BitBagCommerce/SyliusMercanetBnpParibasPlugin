@@ -46,6 +46,7 @@ final class CurrencyValidatorSpec extends ObjectBehavior
         $constraintViolationBuilder->addViolation()->shouldBeCalled();
         $executionContext->buildViolation($constraint->message)->willReturn($constraintViolationBuilder);
         $constraintViolationBuilder->setParameter(Argument::any(), Argument::any())->willReturn($constraintViolationBuilder);
+        $channel->getCurrencies()->willReturn([$currencyModel]);
 
         $this->initialize($executionContext);
         $this->validate($arrayCollection, $constraint);
