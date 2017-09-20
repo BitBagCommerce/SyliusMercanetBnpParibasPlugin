@@ -5,7 +5,11 @@
 
 ## Overview
 
-This plugin enables using Mercanet BNP Paribas payments in Sylius based stores.  
+This plugin enables using Mercanet BNP Paribas payments in Sylius based stores.
+
+## Support
+
+Do you want us to customize this plugin for your specific needs? Write us an email on mikolaj.krol@bitbag.pl 💻
 
 ## Installation
 ```bash
