@@ -9,3 +9,5 @@ tests/Application/web/*
 tests/Application/var/*
 
 tests/Application/node_modules
+
+/bin
