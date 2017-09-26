@@ -37,9 +37,3 @@ services:
         class: BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridge
         arguments:
             - '@request_stack'
-
-    custom_extension.sylius.form.extension.type.payment_method:
-        class:     BitBag\MercanetBnpParibasPlugin\Form\Extension\PaymentMethodExtension
-        decorates: sylius.form.extension.type.payment_method
-        tags:
-            - { name: form.type_extension, extended_type: Sylius\Bundle\PaymentBundle\Form\Type\PaymentMethodType }
