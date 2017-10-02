@@ -62,7 +62,6 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
             Assert::isInstanceOf($payment, PaymentInterface::class);
 
             $payment->setState(PaymentInterface::STATE_COMPLETED);
-
             $order->setPaymentState(OrderPaymentStates::STATE_PAID);
         }
     }
