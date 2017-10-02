@@ -713,7 +713,6 @@ class Mercanet
             die();
         }
         $result_array = json_decode($result);
-        print_r($result_array);
 
         if ($result_array->redirectionStatusCode == "00" ) {
 
