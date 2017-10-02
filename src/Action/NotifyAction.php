@@ -16,8 +16,10 @@ use Payum\Core\ApiAwareInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
 use Payum\Core\GatewayAwareTrait;
+use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Payum\Core\Request\Notify;
+use Sylius\Component\Core\OrderPaymentStates;
 use Webmozart\Assert\Assert;
 
 /**
@@ -54,9 +56,14 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
 
             /** @var PaymentInterface $payment */
             $payment = $request->getFirstModel();
+            /** @var OrderInterface $order */
+            $order = $payment->getOrder();
+
             Assert::isInstanceOf($payment, PaymentInterface::class);
 
             $payment->setState(PaymentInterface::STATE_COMPLETED);
+
+            $order->setPaymentState(OrderPaymentStates::STATE_PAID);
         }
     }
 
