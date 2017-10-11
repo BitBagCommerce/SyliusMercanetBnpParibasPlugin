@@ -23,6 +23,7 @@ services:
         class: BitBag\MercanetBnpParibasPlugin\Action\NotifyAction
         arguments:
             - '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge'
+            - '@sm.factory'
         tags:
             - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.notify }
 
