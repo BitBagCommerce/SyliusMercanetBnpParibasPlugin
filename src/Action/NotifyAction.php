@@ -16,11 +16,11 @@ use Payum\Core\ApiAwareInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
 use Payum\Core\GatewayAwareTrait;
-use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Payum\Core\Request\Notify;
-use Sylius\Component\Core\OrderPaymentStates;
+use Sylius\Component\Payment\PaymentTransitions;
 use Webmozart\Assert\Assert;
+use SM\Factory\FactoryInterface;
 
 /**
  * @author Patryk Drapik <patryk.drapik@bitbag.pl>
@@ -36,12 +36,22 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
      */
     private $mercanetBnpParibasBridge;
 
-    /**.
-     * @param MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
+    /**
+     * @var FactoryInterface
      */
-    public function __construct(MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge)
+    private $stateMachineFactory;
+
+    /**
+     * @param MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
+     * @param FactoryInterface $stateMachineFactory
+     */
+    public function __construct(
+        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
+        FactoryInterface $stateMachineFactory
+    )
     {
         $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
+        $this->stateMachineFactory = $stateMachineFactory;
     }
 
     /**
@@ -56,13 +66,10 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
 
             /** @var PaymentInterface $payment */
             $payment = $request->getFirstModel();
-            /** @var OrderInterface $order */
-            $order = $payment->getOrder();
 
             Assert::isInstanceOf($payment, PaymentInterface::class);
 
-            $payment->setState(PaymentInterface::STATE_COMPLETED);
-            $order->setPaymentState(OrderPaymentStates::STATE_PAID);
+            $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->apply(PaymentTransitions::TRANSITION_COMPLETE);;
         }
     }
 
