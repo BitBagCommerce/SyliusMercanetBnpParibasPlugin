@@ -122,6 +122,12 @@ final class SimplePayment
             return;
         }
 
+        if (Mercanet::SIMULATION === $this->environment) {
+            $this->mercanet->setUrl(Mercanet::SIMULATION);
+
+            return;
+        }
+
         throw new \InvalidArgumentException(
             sprintf('The "%s" environment is invalid. Expected %s or %s',
                 $this->environment, Mercanet::PRODUCTION, Mercanet::TEST)

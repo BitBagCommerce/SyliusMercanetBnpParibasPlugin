@@ -32,6 +32,7 @@ final class MercanetBnpParibasGatewayConfigurationType extends AbstractType
                 'choices' => [
                     'bitbag.mercanet_bnp_paribas.production' => Mercanet::PRODUCTION,
                     'bitbag.mercanet_bnp_paribas.test' => Mercanet::TEST,
+                    'bitbag.mercanet_bnp_paribas.simulation' => Mercanet::SIMULATION,
                 ],
                 'label' => 'bitbag.mercanet_bnp_paribas.environment',
             ])
