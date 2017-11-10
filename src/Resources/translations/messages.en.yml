@@ -6,3 +6,4 @@ bitbag:
         gateway_label: Mercanet BNP Paribas
         production: Production
         test: Test
+        simulation: Simulation
