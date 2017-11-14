@@ -120,7 +120,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $currencyCode = $payment->getCurrencyCode();
         $targetUrl = $request->getToken()->getTargetUrl();
         $amount = $payment->getAmount();
-        $transactionReference = "MercanetWS" . uniqid() . "ORDER" . $payment->getOrder()->getNumber();
+
+        $transactionReference = "MercanetWS" . uniqid() . "OR" . $payment->getOrder()->getNumber();
 
         $model['transactionReference'] = $transactionReference;
 
