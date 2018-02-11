@@ -1,13 +1,11 @@
-/vendor
+/bin/*
+!/bin/.gitkeep
 
-tests/Application/web/*
-!tests/Application/web/.gitkeep
+/vendor/
+/node_modules/
+/composer.lock
 
 /etc/build/*
 !/etc/build/.gitkeep
 
-tests/Application/var/*
-
-tests/Application/node_modules
-
-/bin
+/tests/Application/yarn.lock
