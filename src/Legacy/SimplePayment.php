@@ -90,7 +90,7 @@ final class SimplePayment
 
         $this->mercanet->setMerchantId($this->merchantId);
         $this->mercanet->setInterfaceVersion(Mercanet::INTERFACE_VERSION);
-        $this->mercanet->setKeyVersion('1');
+        $this->mercanet->setKeyVersion('3');
         $this->mercanet->setAmount($this->amount);
         $this->mercanet->setCurrency($this->currency);
         $this->mercanet->setOrderChannel("INTERNET");
