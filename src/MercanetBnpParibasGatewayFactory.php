@@ -11,6 +11,7 @@
 namespace BitBag\MercanetBnpParibasPlugin;
 
 use BitBag\MercanetBnpParibasPlugin\Action\ConvertPaymentAction;
+use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
 
@@ -29,6 +30,8 @@ final class MercanetBnpParibasGatewayFactory extends GatewayFactory
             'payum.factory_title' => 'Mercanet BNP Paribas',
 
             'payum.action.convert' => new ConvertPaymentAction(),
+
+            'payum.http_client' => '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge',
         ]);
 
         if (false == $config['payum.api']) {
@@ -37,19 +40,21 @@ final class MercanetBnpParibasGatewayFactory extends GatewayFactory
                 'secure_key' => '',
                 'merchant_id' => '',
             ];
+
             $config->defaults($config['payum.default_options']);
             $config['payum.required_options'] = ['secret_key', 'environment', 'merchant_id'];
 
             $config['payum.api'] = function (ArrayObject $config) {
                 $config->validateNotEmpty($config['payum.required_options']);
 
-                $MercanetConfig = [
-                    'secret_key' => $config['secret_key'],
-                    'merchant_id' => $config['merchant_id'],
-                    'environment' => $config['environment'],
-                ];
+                /** @var MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge */
+                $mercanetBnpParibasBridge = $config['payum.http_client'];
 
-                return $MercanetConfig;
+                $mercanetBnpParibasBridge->setSecretKey($config['secret_key']);
+                $mercanetBnpParibasBridge->setMerchantId($config['merchant_id']);
+                $mercanetBnpParibasBridge->setEnvironment($config['environment']);
+
+                return $mercanetBnpParibasBridge;
             };
         }
     }

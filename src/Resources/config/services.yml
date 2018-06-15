@@ -15,14 +15,12 @@ services:
         class: BitBag\MercanetBnpParibasPlugin\Action\CaptureAction
         arguments:
             - '@payum'
-            - '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge'
         tags:
             - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.capture }
 
     bitbag.mercanet_bnp_paribas.action.notify:
         class: BitBag\MercanetBnpParibasPlugin\Action\NotifyAction
         arguments:
-            - '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge'
             - '@sm.factory'
         tags:
             - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.notify }

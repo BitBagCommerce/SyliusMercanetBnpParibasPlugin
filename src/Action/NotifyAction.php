@@ -29,8 +29,6 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
 {
     use GatewayAwareTrait;
 
-    private $api = [];
-
     /**
      * @var MercanetBnpParibasBridgeInterface
      */
@@ -42,15 +40,10 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
     private $stateMachineFactory;
 
     /**
-     * @param MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
      * @param FactoryInterface $stateMachineFactory
      */
-    public function __construct(
-        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
-        FactoryInterface $stateMachineFactory
-    )
+    public function __construct(FactoryInterface $stateMachineFactory)
     {
-        $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
         $this->stateMachineFactory = $stateMachineFactory;
     }
 
@@ -62,27 +55,27 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
         /** @var $request Notify */
         RequestNotSupportedException::assertSupports($this, $request);
 
-        if ($this->mercanetBnpParibasBridge->paymentVerification($this->api['secret_key'])) {
+        if ($this->mercanetBnpParibasBridge->paymentVerification()) {
 
             /** @var PaymentInterface $payment */
             $payment = $request->getFirstModel();
 
             Assert::isInstanceOf($payment, PaymentInterface::class);
 
-            $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->apply(PaymentTransitions::TRANSITION_COMPLETE);;
+            $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->apply(PaymentTransitions::TRANSITION_COMPLETE);
         }
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setApi($api)
+    public function setApi($mercanetBnpParibasBridge)
     {
-        if (!is_array($api)) {
+        if (!$mercanetBnpParibasBridge instanceof MercanetBnpParibasBridgeInterface) {
             throw new UnsupportedApiException('Not supported.');
         }
 
-        $this->api = $api;
+        $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
     }
 
     /**

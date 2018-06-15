@@ -25,14 +25,42 @@ interface MercanetBnpParibasBridgeInterface
     public function createMercanet($secretKey);
 
     /**
-     * @param string $secretKey
-     *
      * @return bool
      */
-    public function paymentVerification($secretKey);
+    public function paymentVerification();
 
     /**
      * @return bool
      */
     public function isPostMethod();
+
+    /**
+     * @return string
+     */
+    public function getSecretKey();
+
+    /**
+     * @param string $secretKey
+     */
+    public function setSecretKey($secretKey);
+
+    /**
+     * @return string
+     */
+    public function getMerchantId();
+
+    /**
+     * @param string $merchantId
+     */
+    public function setMerchantId($merchantId);
+
+    /**
+     * @return string
+     */
+    public function getEnvironment();
+
+    /**
+     * @param string $environment
+     */
+    public function setEnvironment($environment);
 }

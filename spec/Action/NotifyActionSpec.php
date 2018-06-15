@@ -14,21 +14,22 @@ use BitBag\MercanetBnpParibasPlugin\Action\NotifyAction;
 use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
 use Payum\Core\Request\Notify;
 use PhpSpec\ObjectBehavior;
+use SM\Factory\FactoryInterface;
+use SM\StateMachine\StateMachineInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
+use Sylius\Component\Payment\PaymentTransitions;
 
 /**
  * @author Patryk Drapik <patryk.drapik@bitbag.pl>
  */
 final class NotifyActionSpec extends ObjectBehavior
 {
-    function let(MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge)
-    {
-        $this->beConstructedWith($mercanetBnpParibasBridge);
-        $this->setApi([
-            'environment' => 'https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit',
-            'secret_key' => '123',
-            'merchant_id' => '123'
-        ]);
+    function let(
+        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
+        FactoryInterface $stateMachineFactory
+    ) {
+        $this->beConstructedWith($stateMachineFactory);
+        $this->setApi($mercanetBnpParibasBridge);
     }
 
     function it_is_initializable()
@@ -40,14 +41,17 @@ final class NotifyActionSpec extends ObjectBehavior
         Notify $request,
         \ArrayObject $arrayObject,
         MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
-        PaymentInterface $payment
-    )
-    {
-        $payment->setState(PaymentInterface::STATE_COMPLETED)->shouldBeCalled();
+        PaymentInterface $payment,
+        FactoryInterface $stateMachineFactory,
+        StateMachineInterface $stateMachine
+    ) {
         $request->getModel()->willReturn($arrayObject);
         $request->getFirstModel()->willReturn($payment);
         $mercanetBnpParibasBridge->isPostMethod()->willReturn(true);
-        $mercanetBnpParibasBridge->paymentVerification(123)->willReturn(true);
+        $mercanetBnpParibasBridge->paymentVerification()->willReturn(true);
+        $stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->willReturn($stateMachine);
+
+        $stateMachine->apply(PaymentTransitions::TRANSITION_COMPLETE)->shouldBeCalled();
 
         $this->execute($request);
     }

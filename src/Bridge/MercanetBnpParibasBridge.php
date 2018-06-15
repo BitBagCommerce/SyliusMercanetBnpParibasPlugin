@@ -24,6 +24,21 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
     private $requestStack;
 
     /**
+     * @var string
+     */
+    private $secretKey;
+
+    /**
+     * @var string
+     */
+    private $merchantId;
+
+    /**
+     * @var string
+     */
+    private $environment;
+
+    /**
      * @param RequestStack $requestStack
      */
     public function __construct(RequestStack $requestStack)
@@ -42,11 +57,11 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
     /**
      * {@inheritDoc}
      */
-    public function paymentVerification($secretKey)
+    public function paymentVerification()
     {
         if ($this->isPostMethod()) {
 
-            $paymentResponse = new Mercanet($secretKey);
+            $paymentResponse = new Mercanet($this->secretKey);
             $paymentResponse->setResponse($_POST);
 
             return $paymentResponse->isValid();
@@ -63,5 +78,53 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
         $currentRequest = $this->requestStack->getCurrentRequest();
 
         return $currentRequest->isMethod('POST');
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecretKey()
+    {
+        return $this->secretKey;
+    }
+
+    /**
+     * @param string $secretKey
+     */
+    public function setSecretKey($secretKey)
+    {
+        $this->secretKey = $secretKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantId()
+    {
+        return $this->merchantId;
+    }
+
+    /**
+     * @param string $merchantId
+     */
+    public function setMerchantId($merchantId)
+    {
+        $this->merchantId = $merchantId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnvironment()
+    {
+        return $this->environment;
+    }
+
+    /**
+     * @param string $environment
+     */
+    public function setEnvironment($environment)
+    {
+        $this->environment = $environment;
     }
 }

@@ -52,6 +52,25 @@ final class MercanetBnpParibasMocker
             ->shouldReceive('isPostMethod')
             ->andReturn(true);
 
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getSecretKey')
+            ->andReturn('test')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getMerchantId')
+            ->andReturn('test')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getEnvironment')
+            ->andReturn(Mercanet::TEST)
+        ;
+
         $action();
 
         $this->mocker->unmockAll();
@@ -76,6 +95,25 @@ final class MercanetBnpParibasMocker
         $openMercanetBnpParibasWrapper
             ->shouldReceive('isPostMethod')
             ->andReturn(true);
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getSecretKey')
+            ->andReturn('test')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getMerchantId')
+            ->andReturn('test')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getEnvironment')
+            ->andReturn(Mercanet::TEST)
+        ;
 
         $action();
 

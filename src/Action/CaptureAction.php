@@ -32,8 +32,6 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 {
     use GatewayAwareTrait;
 
-    private $api = [];
-
     /**
      * @var Payum
      */
@@ -46,27 +44,22 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
     /**
      * @param Payum $payum
-     * @param MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
      */
-    public function __construct(
-        Payum $payum,
-        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge
-    )
+    public function __construct(Payum $payum)
     {
-        $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
         $this->payum = $payum;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setApi($api)
+    public function setApi($mercanetBnpParibasBridge)
     {
-        if (!is_array($api)) {
+        if (!$mercanetBnpParibasBridge instanceof MercanetBnpParibasBridgeInterface) {
             throw new UnsupportedApiException('Not supported.');
         }
 
-        $this->api = $api;
+        $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
     }
 
     /**
@@ -93,7 +86,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
             if ($this->mercanetBnpParibasBridge->isPostMethod()) {
 
-                $model['status'] = $this->mercanetBnpParibasBridge->paymentVerification($this->api['secret_key']) ?
+                $model['status'] = $this->mercanetBnpParibasBridge->paymentVerification() ?
                     PaymentInterface::STATE_COMPLETED : PaymentInterface::STATE_CANCELLED;
 
                 $request->setModel($model);
@@ -109,12 +102,12 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         $notifyToken = $this->createNotifyToken($token->getGatewayName(), $token->getDetails());
 
-        $secretKey = $this->api['secret_key'];
+        $secretKey = $this->mercanetBnpParibasBridge->getSecretKey();
 
         $mercanet = $this->mercanetBnpParibasBridge->createMercanet($secretKey);
 
-        $environment = $this->api['environment'];
-        $merchantId = $this->api['merchant_id'];
+        $environment = $this->mercanetBnpParibasBridge->getEnvironment();
+        $merchantId = $this->mercanetBnpParibasBridge->getMerchantId();
 
         $automaticResponseUrl = $notifyToken->getTargetUrl();
         $currencyCode = $payment->getCurrencyCode();

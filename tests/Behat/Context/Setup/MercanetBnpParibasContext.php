@@ -76,13 +76,13 @@ final class MercanetBnpParibasContext implements Context
     public function theStoreHasAPaymentMethodWithACodeAndMercanetBnpParibasCheckoutGateway(
         $paymentMethodName,
         $paymentMethodCode
-    )
-    {
+    ) {
         $paymentMethod = $this->createPaymentMethod($paymentMethodName, $paymentMethodCode, 'Mercanet Bnp Paribas');
         $paymentMethod->getGatewayConfig()->setConfig([
             'environment' => Mercanet::TEST,
             'merchant_id' => 'TEST',
             'secret_key' => 'TEST',
+            'payum.http_client' => '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge',
         ]);
 
         $this->paymentMethodManager->flush();

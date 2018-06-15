@@ -31,11 +31,7 @@ final class CaptureActionSpec extends ObjectBehavior
     function let(Payum $payum, MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge)
     {
         $this->beConstructedWith($payum, $mercanetBnpParibasBridge);
-        $this->setApi([
-            'environment' => 'https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit',
-            'secret_key' => '123',
-            'merchant_id' => '123'
-        ]);
+        $this->setApi($mercanetBnpParibasBridge);
     }
 
     function it_is_initializable()
@@ -56,6 +52,9 @@ final class CaptureActionSpec extends ObjectBehavior
         Mercanet $mercanet
     )
     {
+        $mercanetBnpParibasBridge->getSecretKey()->willReturn('123');
+        $mercanetBnpParibasBridge->getEnvironment()->willReturn(Mercanet::TEST);
+        $mercanetBnpParibasBridge->getMerchantId()->willReturn('123');
         $mercanetBnpParibasBridge->createMercanet('123')->willReturn($mercanet);
         $payment->getOrder()->willReturn($order);
         $payment->getCurrencyCode()->willReturn('EUR');
