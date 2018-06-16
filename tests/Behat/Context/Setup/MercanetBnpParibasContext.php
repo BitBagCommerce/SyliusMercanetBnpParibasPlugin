@@ -81,6 +81,7 @@ final class MercanetBnpParibasContext implements Context
         $paymentMethod->getGatewayConfig()->setConfig([
             'environment' => Mercanet::TEST,
             'merchant_id' => 'TEST',
+            'key_version' => 'TEST',
             'secret_key' => 'TEST',
             'payum.http_client' => '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge',
         ]);

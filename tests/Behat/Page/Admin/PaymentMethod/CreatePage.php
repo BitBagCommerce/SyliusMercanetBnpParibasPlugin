@@ -37,6 +37,14 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * {@inheritdoc}
      */
+    public function setMercanetBnpParibasPluginGatewayKeyVersion($keyVersion)
+    {
+        $this->getDocument()->fillField('Key version', $keyVersion);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setMercanetBnpParibasPluginGatewayEnvironment($environment)
     {
         $this->getDocument()->selectFieldOption('Environment', $environment);

@@ -36,6 +36,11 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
     /**
      * @var string
      */
+    private $keyVersion;
+
+    /**
+     * @var string
+     */
     private $environment;
 
     /**
@@ -110,6 +115,22 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
     public function setMerchantId($merchantId)
     {
         $this->merchantId = $merchantId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyVersion()
+    {
+        return $this->keyVersion;
+    }
+
+    /**
+     * @param string $keyVersion
+     */
+    public function setKeyVersion($keyVersion)
+    {
+        $this->keyVersion = $keyVersion;
     }
 
     /**

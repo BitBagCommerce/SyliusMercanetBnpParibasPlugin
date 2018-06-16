@@ -57,6 +57,16 @@ interface MercanetBnpParibasBridgeInterface
     /**
      * @return string
      */
+    public function getKeyVersion();
+
+    /**
+     * @param string $keyVersion
+     */
+    public function setKeyVersion($keyVersion);
+
+    /**
+     * @return string
+     */
     public function getEnvironment();
 
     /**

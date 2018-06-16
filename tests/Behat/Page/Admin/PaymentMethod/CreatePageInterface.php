@@ -28,6 +28,11 @@ interface CreatePageInterface extends BaseCreatePageInterface
     public function setMercanetBnpParibasPluginGatewayMerchantId($merchantId);
 
     /**
+     * @param string $keyVersion
+     */
+    public function setMercanetBnpParibasPluginGatewayKeyVersion($keyVersion);
+
+    /**
      * @param string $environment
      */
     public function setMercanetBnpParibasPluginGatewayEnvironment($environment);

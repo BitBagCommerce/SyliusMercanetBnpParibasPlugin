@@ -36,6 +36,11 @@ final class SimplePayment
     /**
      * @var string
      */
+    private $keyVersion;
+
+    /**
+     * @var string
+     */
     private $amount;
 
     /**
@@ -56,6 +61,7 @@ final class SimplePayment
     /**
      * @param Mercanet $mercanet
      * @param $merchantId
+     * @param $keyVersion
      * @param $environment
      * @param $amount
      * @param $targetUrl
@@ -66,6 +72,7 @@ final class SimplePayment
     public function __construct(
         Mercanet $mercanet,
         $merchantId,
+        $keyVersion,
         $environment,
         $amount,
         $targetUrl,
@@ -79,6 +86,7 @@ final class SimplePayment
         $this->mercanet = $mercanet;
         $this->environment = $environment;
         $this->merchantId = $merchantId;
+        $this->keyVersion = $keyVersion;
         $this->amount = $amount;
         $this->currency = $currency;
         $this->targetUrl = $targetUrl;
@@ -90,7 +98,7 @@ final class SimplePayment
 
         $this->mercanet->setMerchantId($this->merchantId);
         $this->mercanet->setInterfaceVersion(Mercanet::INTERFACE_VERSION);
-        $this->mercanet->setKeyVersion('3');
+        $this->mercanet->setKeyVersion($this->keyVersion);
         $this->mercanet->setAmount($this->amount);
         $this->mercanet->setCurrency($this->currency);
         $this->mercanet->setOrderChannel("INTERNET");

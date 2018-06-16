@@ -108,6 +108,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         $environment = $this->mercanetBnpParibasBridge->getEnvironment();
         $merchantId = $this->mercanetBnpParibasBridge->getMerchantId();
+        $keyVersion = $this->mercanetBnpParibasBridge->getKeyVersion();
 
         $automaticResponseUrl = $notifyToken->getTargetUrl();
         $currencyCode = $payment->getCurrencyCode();
@@ -121,6 +122,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $simplePayment = new SimplePayment(
             $mercanet,
             $merchantId,
+            $keyVersion,
             $environment,
             $amount,
             $targetUrl,
