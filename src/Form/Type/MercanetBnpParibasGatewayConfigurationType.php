@@ -56,6 +56,15 @@ final class MercanetBnpParibasGatewayConfigurationType extends AbstractType
                     ])
                 ],
             ])
+            ->add('key_version', TextType::class, [
+                'label' => 'bitbag.mercanet_bnp_paribas.key_version',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'bitbag.mercanet_bnp_paribas.key_version.not_blank',
+                        'groups' => ['sylius']
+                    ])
+                ],
+            ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
                 $data['payum.http_client'] = '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge';

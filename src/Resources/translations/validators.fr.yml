@@ -2,6 +2,8 @@ bitbag:
     mercanet_bnp_paribas:
         merchant_id:
             not_blank: Entrez l'identifiant du marchand.
+        key_version:
+            not_blank: Please enter the Key version.
         secure_key:
             not_blank: Veuillez entrer le code de sécurité.
         channel:

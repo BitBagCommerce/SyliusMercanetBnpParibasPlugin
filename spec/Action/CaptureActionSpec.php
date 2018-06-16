@@ -55,6 +55,7 @@ final class CaptureActionSpec extends ObjectBehavior
         $mercanetBnpParibasBridge->getSecretKey()->willReturn('123');
         $mercanetBnpParibasBridge->getEnvironment()->willReturn(Mercanet::TEST);
         $mercanetBnpParibasBridge->getMerchantId()->willReturn('123');
+        $mercanetBnpParibasBridge->getKeyVersion()->willReturn('3');
         $mercanetBnpParibasBridge->createMercanet('123')->willReturn($mercanet);
         $payment->getOrder()->willReturn($order);
         $payment->getCurrencyCode()->willReturn('EUR');

@@ -47,6 +47,7 @@ final class ManagingPaymentMethodsContext implements Context
     {
         $this->createPage->setMercanetBnpParibasPluginGatewaySecretKey('test');
         $this->createPage->setMercanetBnpParibasPluginGatewayMerchantId('test');
+        $this->createPage->setMercanetBnpParibasPluginGatewayKeyVersion('test');
         $this->createPage->setMercanetBnpParibasPluginGatewayEnvironment('Test');
     }
 
@@ -64,5 +65,13 @@ final class ManagingPaymentMethodsContext implements Context
     public function iShouldBeNotifiedThatTheMerchantIdIsInvalid()
     {
         Assert::true($this->createPage->findValidationMessage('Please enter the Merchant ID.'));
+    }
+
+    /**
+     * @Then I should be notified that the Key version is invalid
+     */
+    public function iShouldBeNotifiedThatTheKeyVersionIsInvalid()
+    {
+        Assert::true($this->createPage->findValidationMessage('Please enter the Key version.'));
     }
 }

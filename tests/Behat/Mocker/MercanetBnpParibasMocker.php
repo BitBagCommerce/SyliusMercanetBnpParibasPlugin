@@ -53,7 +53,7 @@ final class MercanetBnpParibasMocker
             ->andReturn(true);
 
         $openMercanetBnpParibasWrapper
-            ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId')
+            ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId', 'setKeyVersion')
         ;
 
         $openMercanetBnpParibasWrapper
@@ -63,6 +63,11 @@ final class MercanetBnpParibasMocker
 
         $openMercanetBnpParibasWrapper
             ->shouldReceive('getMerchantId')
+            ->andReturn('test')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getKeyVersion')
             ->andReturn('test')
         ;
 
@@ -97,7 +102,7 @@ final class MercanetBnpParibasMocker
             ->andReturn(true);
 
         $openMercanetBnpParibasWrapper
-            ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId')
+            ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId', 'setKeyVersion')
         ;
 
         $openMercanetBnpParibasWrapper
@@ -107,6 +112,11 @@ final class MercanetBnpParibasMocker
 
         $openMercanetBnpParibasWrapper
             ->shouldReceive('getMerchantId')
+            ->andReturn('test')
+        ;
+
+        $openMercanetBnpParibasWrapper
+            ->shouldReceive('getKeyVersion')
             ->andReturn('test')
         ;
 

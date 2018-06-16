@@ -39,10 +39,11 @@ final class MercanetBnpParibasGatewayFactory extends GatewayFactory
                 'environment' => '',
                 'secure_key' => '',
                 'merchant_id' => '',
+                'key_version' => '',
             ];
 
             $config->defaults($config['payum.default_options']);
-            $config['payum.required_options'] = ['secret_key', 'environment', 'merchant_id'];
+            $config['payum.required_options'] = ['secret_key', 'environment', 'merchant_id', 'key_version'];
 
             $config['payum.api'] = function (ArrayObject $config) {
                 $config->validateNotEmpty($config['payum.required_options']);
@@ -52,6 +53,7 @@ final class MercanetBnpParibasGatewayFactory extends GatewayFactory
 
                 $mercanetBnpParibasBridge->setSecretKey($config['secret_key']);
                 $mercanetBnpParibasBridge->setMerchantId($config['merchant_id']);
+                $mercanetBnpParibasBridge->setKeyVersion($config['key_version']);
                 $mercanetBnpParibasBridge->setEnvironment($config['environment']);
 
                 return $mercanetBnpParibasBridge;
