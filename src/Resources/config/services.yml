@@ -4,12 +4,15 @@ services:
         tags:
             - { name: sylius.gateway_configuration_type, type: mercanet_bnp_paribas, label: bitbag.mercanet_bnp_paribas.gateway_label }
             - { name: form.type }
+        public: true
 
     bitbag.mercanet_bnp_paribas.gateway_factory:
         class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
         arguments: [BitBag\MercanetBnpParibasPlugin\MercanetBnpParibasGatewayFactory]
         tags:
             - { name: payum.gateway_factory_builder, factory: mercanet_bnp_paribas }
+        public: true
+
 
     bitbag.mercanet_bnp_paribas.action.capture:
         class: BitBag\MercanetBnpParibasPlugin\Action\CaptureAction
@@ -17,6 +20,7 @@ services:
             - '@payum'
         tags:
             - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.capture }
+        public: true
 
     bitbag.mercanet_bnp_paribas.action.notify:
         class: BitBag\MercanetBnpParibasPlugin\Action\NotifyAction
@@ -24,6 +28,7 @@ services:
             - '@sm.factory'
         tags:
             - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.notify }
+        public: true
 
     bitbag.mercanet_bnp_paribas.action.status:
         class: BitBag\MercanetBnpParibasPlugin\Action\StatusAction
@@ -31,8 +36,10 @@ services:
             - '@request_stack'
         tags:
             - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.status }
+        public: true
 
     bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge:
         class: BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridge
         arguments:
             - '@request_stack'
+        public: true
