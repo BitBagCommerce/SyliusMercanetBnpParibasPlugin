@@ -29,6 +29,8 @@ interface MercanetBnpParibasBridgeInterface
      */
     public function paymentVerification();
 
+    public function getAuthorisationId();
+
     /**
      * @return bool
      */

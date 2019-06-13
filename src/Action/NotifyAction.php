@@ -60,6 +60,8 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
             /** @var PaymentInterface $payment */
             $payment = $request->getFirstModel();
 
+            $payment->getDetails()['authorisationId'] = $this->mercanetBnpParibasBridge->getAuthorisationId();
+
             Assert::isInstanceOf($payment, PaymentInterface::class);
 
             $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->apply(PaymentTransitions::TRANSITION_COMPLETE);

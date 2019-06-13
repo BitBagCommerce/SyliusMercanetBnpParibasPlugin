@@ -43,6 +43,9 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
      */
     private $environment;
 
+    /** @var Mercanet */
+    private $mercanet;
+
     /**
      * @param RequestStack $requestStack
      */
@@ -66,13 +69,18 @@ final class MercanetBnpParibasBridge implements MercanetBnpParibasBridgeInterfac
     {
         if ($this->isPostMethod()) {
 
-            $paymentResponse = new Mercanet($this->secretKey);
-            $paymentResponse->setResponse($_POST);
+            $this->mercanet = new Mercanet($this->secretKey);
+            $this->mercanet->setResponse($_POST);
 
-            return $paymentResponse->isValid();
+            return $this->mercanet->isValid();
         }
 
         return false;
+    }
+
+    public function getAuthorisationId()
+    {
+        return $this->mercanet->getAuthorisationId();
     }
 
     /**
