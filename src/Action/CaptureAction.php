@@ -90,7 +90,9 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
                     PaymentInterface::STATE_COMPLETED : PaymentInterface::STATE_CANCELLED
                 ;
 
-                $model['authorisationId'] = $this->mercanetBnpParibasBridge->getAuthorisationId();
+                if ($model['status'] == PaymentInterface::STATE_COMPLETED) {
+                    $model['authorisationId'] = $this->mercanetBnpParibasBridge->getAuthorisationId();
+                }
 
                 $request->setModel($model);
 
