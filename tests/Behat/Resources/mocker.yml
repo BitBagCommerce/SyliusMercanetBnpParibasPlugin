@@ -1,4 +1,5 @@
 services:
+    _defaults: { public: true }
     bitbag.mercanet_bnp_paribas_plugin.mocker.mercanet_bnp_paribas:
         class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Mocker\MercanetBnpParibasMocker
         arguments:

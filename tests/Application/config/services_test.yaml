@@ -1,0 +1,5 @@
+imports:
+    - { resource: "../../Behat/Resources/contexts.yml" }
+    - { resource: "../../Behat/Resources/mocker.yml" }
+    - { resource: "../../Behat/Resources/page.yml" }
+    - { resource: "../../../vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml" }

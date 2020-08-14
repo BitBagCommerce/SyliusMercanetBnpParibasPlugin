@@ -1,7 +1,7 @@
 default:
     suites:
         ui_paying_for_order:
-            contexts_services:
+            contexts:
                 - sylius.behat.context.hook.doctrine_orm
 
                 - sylius.behat.context.transform.address
@@ -45,7 +45,7 @@ default:
             filters:
                 tags: "@paying_with_mercanet_bnp_paribas_for_order && @ui"
         ui_managing_payment_methods:
-            contexts_services:
+            contexts:
                 - sylius.behat.context.hook.doctrine_orm
 
                 - sylius.behat.context.setup.channel
