@@ -126,18 +126,24 @@ class Mercanet
         // compose SHA string
         $shaString = '';
         foreach ($parameters as $key => $value) {
-            if ($key != 'keyVersion') {
+            if ($key !== 'keyVersion') {
                 if (is_array($value)) {
-                    shaCompose($value);
+                    $shaString .= $this->shaCompose($value);
                 } else {
                     $shaString .= $value;
                 }
             }
         }
-        $shaString = str_replace("[", "", $shaString);
-        $shaString = str_replace("]", "", $shaString);
-        $shaString = str_replace("\",\"", "", $shaString);
-        $shaString = str_replace("\"", "", $shaString);
+        $shaString = str_replace(
+            [
+                "[",
+                "]",
+                "\",\"",
+                "\"",
+            ],
+            "",
+            $shaString
+        );
         return $shaString;
     }
 
