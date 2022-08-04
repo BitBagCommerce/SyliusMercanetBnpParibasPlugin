@@ -12,7 +12,7 @@ namespace BitBag\MercanetBnpParibasPlugin\Legacy;
  */
 class Mercanet
 {
-    const TEST = "https://payment-webinit-mercanet.test.sips-atos.com/rs-services/v2/paymentInit";
+    const TEST = "https://payment-webinit-mercanet.test.sips-services.com/rs-services/v2/paymentInit";
     const SIMULATION = "https://payment-webinit.simu.mercanet.bnpparibas.net/rs-services/v2/paymentInit";
     const PRODUCTION = "https://payment-webinit.mercanet.bnpparibas.net/rs-services/v2/paymentInit";
 
