@@ -1,10 +1,11 @@
 services:
+    _defaults: { public: true }
     bitbag.mercanet_bnp_paribas_plugin.page.external:
         class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Page\External\MercanetBnpParibasCheckoutPage
         parent: 'sylius.behat.page'
         public: 'false'
         arguments:
-            - '@__symfony__.sylius.repository.payment_security_token'
+            - '@sylius.repository.payment_security_token'
 
     bitbag.mercanet_bnp_paribas_plugin.page.admin.payment_method.create:
         class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Page\Admin\PaymentMethod\CreatePage

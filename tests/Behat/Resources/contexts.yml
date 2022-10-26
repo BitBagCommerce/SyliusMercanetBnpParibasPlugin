@@ -1,15 +1,13 @@
 services:
+    _defaults: { public: true }
     bitbag.mercanet_bnp_paribas_plugin.context.setup.mercanet_bnp_paribas:
         class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Setup\MercanetBnpParibasContext
         arguments:
             - '@sylius.behat.shared_storage'
-            - '@__symfony__.sylius.repository.payment_method'
-            - '@__symfony__.sylius.fixture.example_factory.payment_method'
-            - '@__symfony__.sylius.factory.payment_method_translation'
-            - '@__symfony__.sylius.manager.payment_method'
-
-        tags:
-            - { name: fob.context_service }
+            - '@sylius.repository.payment_method'
+            - '@sylius.fixture.example_factory.payment_method'
+            - '@sylius.factory.payment_method_translation'
+            - '@sylius.manager.payment_method'
 
     bitbag.mercanet_bnp_paribas_plugin.context.ui.shop.mercanet_bnp_paribas:
         class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Ui\Shop\MercanetBnpParibasContext
@@ -18,19 +16,13 @@ services:
             - '@sylius.behat.page.shop.checkout.complete'
             - '@bitbag.mercanet_bnp_paribas_plugin.page.external'
             - '@sylius.behat.page.shop.order.show'
-        tags:
-            - { name: fob.context_service }
 
     bitbag.mercanet_bnp_paribas_plugin.context.setup.channel:
         class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Setup\ChannelContext
         arguments:
-            - '@__symfony__.sylius.behat.factory.default_channel'
-        tags:
-            - { name: fob.context_service }
+            - '@sylius.behat.factory.default_channel'
 
     bitbag.mercanet_bnp_paribas_plugin.context.ui.admin.managing_payment_methods:
         class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Ui\Admin\ManagingPaymentMethodsContext
         arguments:
             - '@bitbag.mercanet_bnp_paribas_plugin.page.admin.payment_method.create'
-        tags:
-            - { name: fob.context_service }
